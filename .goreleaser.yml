@@ -1,0 +1,14 @@
+builds:
+  - binary: mackerel-plugin-linux-tcp-memory
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+archives:
+  - format: zip
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+release:
+  github:
+    owner: ryuichi1208
+    name: mackerel-plugin-linux-virt-mem
