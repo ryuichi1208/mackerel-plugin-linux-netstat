@@ -11,4 +11,4 @@ archives:
 release:
   github:
     owner: ryuichi1208
-    name: mackerel-plugin-linux-virt-mem
+    name: mackerel-plugin-linux-netstat
