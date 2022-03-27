@@ -31,9 +31,11 @@ func (n NetstatPlugin) MetricKeyPrefix() string {
 }
 
 func (v NetstatPlugin) FetchMetrics() (map[string]float64, error) {
-	m := get()
+	m, err := get()
+	if err != nil {
+		return m, err
+	}
 	return m, nil
-
 }
 
 func Do() {

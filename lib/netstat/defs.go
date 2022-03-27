@@ -9,52 +9,6 @@ import (
 func (n NetstatPlugin) GraphDefinition() map[string]mp.Graphs {
 	labelPrefix := strings.Title(n.MetricKeyPrefix())
 	graphs := map[string]mp.Graphs{
-		"tcp.syncookies": {
-			Label: labelPrefix,
-			Unit:  mp.UnitBytes,
-			Metrics: []mp.Metrics{
-				{Name: "TcpExtSyncookiesSent", Label: "", Diff: true},
-				{Name: "TcpExtSyncookiesRecv", Label: "", Diff: true},
-				{Name: "TcpExtSyncookiesFailed", Label: "", Diff: true},
-			},
-		},
-		"tcp.timewait.timewait": {
-			Label: labelPrefix,
-			Unit:  mp.UnitBytes,
-			Metrics: []mp.Metrics{
-				{Name: "TcpExtTW", Label: "", Diff: true},
-				{Name: "TcpExtTWRecycled", Label: "", Diff: true},
-				{Name: "TcpExtTWKilled", Label: "", Diff: true},
-			},
-		},
-		"tcp.delayed_acks": {
-			Label: labelPrefix,
-			Unit:  mp.UnitBytes,
-			Metrics: []mp.Metrics{
-				{Name: "TcpExtDelayedACKs", Label: "", Diff: true},
-				{Name: "TcpExtDelayedACKLocked", Label: "", Diff: true},
-				{Name: "TcpExtDelayedACKLost", Label: "", Diff: true},
-			},
-		},
-		"tcp.timeout": {
-			Label: labelPrefix,
-			Unit:  mp.UnitBytes,
-			Metrics: []mp.Metrics{
-				{Name: "TcpExtTCPTimeouts", Label: "", Diff: true},
-			},
-		},
-		"tcp.abort": {
-			Label: labelPrefix,
-			Unit:  mp.UnitBytes,
-			Metrics: []mp.Metrics{
-				{Name: "TcpExtTCPAbortOnData", Label: "", Diff: true},
-				{Name: "TcpExtTCPAbortOnClose", Label: "", Diff: true},
-				{Name: "TcpExtTCPAbortOnMemory", Label: "", Diff: true},
-				{Name: "TcpExtTCPAbortOnTimeout", Label: "", Diff: true},
-				{Name: "TcpExtTCPAbortOnLinger", Label: "", Diff: true},
-				{Name: "TcpExtTCPAbortFailed", Label: "", Diff: true},
-			},
-		},
 		"tcp.segments": {
 			Label: labelPrefix,
 			Unit:  mp.UnitBytes,
@@ -89,7 +43,54 @@ func (n NetstatPlugin) GraphDefinition() map[string]mp.Graphs {
 		},
 	}
 	if n.Extend {
-		extendGraphs := map[string]mp.Graphs{}
+		extendGraphs := map[string]mp.Graphs{
+			"tcp.abort": {
+				Label: labelPrefix,
+				Unit:  mp.UnitBytes,
+				Metrics: []mp.Metrics{
+					{Name: "TcpExtTCPAbortOnData", Label: "", Diff: true},
+					{Name: "TcpExtTCPAbortOnClose", Label: "", Diff: true},
+					{Name: "TcpExtTCPAbortOnMemory", Label: "", Diff: true},
+					{Name: "TcpExtTCPAbortOnTimeout", Label: "", Diff: true},
+					{Name: "TcpExtTCPAbortOnLinger", Label: "", Diff: true},
+					{Name: "TcpExtTCPAbortFailed", Label: "", Diff: true},
+				},
+			},
+			"tcp.delayed_acks": {
+				Label: labelPrefix,
+				Unit:  mp.UnitBytes,
+				Metrics: []mp.Metrics{
+					{Name: "TcpExtDelayedACKs", Label: "", Diff: true},
+					{Name: "TcpExtDelayedACKLocked", Label: "", Diff: true},
+					{Name: "TcpExtDelayedACKLost", Label: "", Diff: true},
+				},
+			},
+			"tcp.timewait.timewait": {
+				Label: labelPrefix,
+				Unit:  mp.UnitBytes,
+				Metrics: []mp.Metrics{
+					{Name: "TcpExtTW", Label: "", Diff: true},
+					{Name: "TcpExtTWRecycled", Label: "", Diff: true},
+					{Name: "TcpExtTWKilled", Label: "", Diff: true},
+				},
+			},
+			"tcp.syncookies": {
+				Label: labelPrefix,
+				Unit:  mp.UnitBytes,
+				Metrics: []mp.Metrics{
+					{Name: "TcpExtSyncookiesSent", Label: "", Diff: true},
+					{Name: "TcpExtSyncookiesRecv", Label: "", Diff: true},
+					{Name: "TcpExtSyncookiesFailed", Label: "", Diff: true},
+				},
+			},
+			"tcp.timeout": {
+				Label: labelPrefix,
+				Unit:  mp.UnitBytes,
+				Metrics: []mp.Metrics{
+					{Name: "TcpExtTCPTimeouts", Label: "", Diff: true},
+				},
+			},
+		}
 		graphs = mapMerge(graphs, extendGraphs)
 	}
 	return graphs

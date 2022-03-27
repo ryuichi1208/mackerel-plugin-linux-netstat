@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -92,28 +91,16 @@ func parseCompact(file io.Reader) map[string]float64 {
 	return result
 }
 
-func merge(m ...map[string]float64) map[string]float64 {
-	ans := make(map[string]float64, 0)
-
-	for _, c := range m {
-		for k, v := range c {
-			ans[k] = v
-		}
-	}
-	return ans
-}
-
-func get() map[string]float64 {
+func get() (map[string]float64, error) {
 	r := make(map[string]float64)
 	for _, source := range sources {
 		stats, err := source.read()
 		if err != nil {
-			log.Printf("Error reading stats file: %v", err)
 			continue
 		}
 		for k, v := range stats {
 			r[k] = v
 		}
 	}
-	return r
+	return r, nil
 }
