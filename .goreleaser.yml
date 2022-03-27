@@ -1,5 +1,5 @@
 builds:
-  - binary: mackerel-plugin-linux-tcp-memory
+  - binary: mackerel-plugin-linux-netstat
     goos:
       - linux
     goarch:
