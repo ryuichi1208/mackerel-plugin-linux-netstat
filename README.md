@@ -1,1 +1,1 @@
-# -mackerel-plugin-linux-netstat
+# mackerel-plugin-linux-netstat
