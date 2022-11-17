@@ -10,7 +10,7 @@ func (n NetstatPlugin) GraphDefinition() map[string]mp.Graphs {
 	labelPrefix := strings.Title(n.MetricKeyPrefix())
 	graphs := map[string]mp.Graphs{
 		"tcp.segments": {
-			Label: labelPrefix,
+			Label: labelPrefix + " segments",
 			Unit:  mp.UnitBytes,
 			Metrics: []mp.Metrics{
 				{Name: "TcpInSegs", Label: "", Diff: true},
@@ -21,14 +21,14 @@ func (n NetstatPlugin) GraphDefinition() map[string]mp.Graphs {
 			},
 		},
 		"tcp.memory": {
-			Label: labelPrefix,
+			Label: labelPrefix + " memory",
 			Unit:  mp.UnitBytes,
 			Metrics: []mp.Metrics{
 				{Name: "tcp_memory_size", Label: "", Diff: false},
 			},
 		},
 		"tcp.misc_errors": {
-			Label: labelPrefix,
+			Label: labelPrefix + " misc_errors",
 			Unit:  mp.UnitBytes,
 			Metrics: []mp.Metrics{
 				{Name: "TcpExtEmbryonicRsts", Label: "", Diff: true},
@@ -45,7 +45,7 @@ func (n NetstatPlugin) GraphDefinition() map[string]mp.Graphs {
 	if n.Extend {
 		extendGraphs := map[string]mp.Graphs{
 			"tcp.abort": {
-				Label: labelPrefix,
+				Label: labelPrefix + " abort",
 				Unit:  mp.UnitBytes,
 				Metrics: []mp.Metrics{
 					{Name: "TcpExtTCPAbortOnData", Label: "", Diff: true},
@@ -57,7 +57,7 @@ func (n NetstatPlugin) GraphDefinition() map[string]mp.Graphs {
 				},
 			},
 			"tcp.delayed_acks": {
-				Label: labelPrefix,
+				Label: labelPrefix + " delayed_acks",
 				Unit:  mp.UnitBytes,
 				Metrics: []mp.Metrics{
 					{Name: "TcpExtDelayedACKs", Label: "", Diff: true},
@@ -66,7 +66,7 @@ func (n NetstatPlugin) GraphDefinition() map[string]mp.Graphs {
 				},
 			},
 			"tcp.timewait.timewait": {
-				Label: labelPrefix,
+				Label: labelPrefix + " timewait",
 				Unit:  mp.UnitBytes,
 				Metrics: []mp.Metrics{
 					{Name: "TcpExtTW", Label: "", Diff: true},
@@ -75,7 +75,7 @@ func (n NetstatPlugin) GraphDefinition() map[string]mp.Graphs {
 				},
 			},
 			"tcp.syncookies": {
-				Label: labelPrefix,
+				Label: labelPrefix + " syncookies",
 				Unit:  mp.UnitBytes,
 				Metrics: []mp.Metrics{
 					{Name: "TcpExtSyncookiesSent", Label: "", Diff: true},
@@ -84,7 +84,7 @@ func (n NetstatPlugin) GraphDefinition() map[string]mp.Graphs {
 				},
 			},
 			"tcp.timeout": {
-				Label: labelPrefix,
+				Label: labelPrefix + " timeout",
 				Unit:  mp.UnitBytes,
 				Metrics: []mp.Metrics{
 					{Name: "TcpExtTCPTimeouts", Label: "", Diff: true},
